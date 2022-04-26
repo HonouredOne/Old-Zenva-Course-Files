@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "kivy,kv": "kv",
+        "*.py": "python",
+        "iostream": "cpp"
+    }
+}

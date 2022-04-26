@@ -1,0 +1,9 @@
+name: sqlite
+channels:
+  - defaults
+dependencies:
+  - pip
+  - python=3.6.6
+  - spyder
+  - sqlite
+
