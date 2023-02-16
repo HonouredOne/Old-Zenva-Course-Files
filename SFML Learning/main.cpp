@@ -1,22 +1,19 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
   
-  sf::Font font;
-  if (!font.loadFromFile("assets/Arial.ttf")) {
-    std::cout << "Could not load font file";
+  sf::SoundBuffer buffer;
+  if (!buffer.loadFromFile("assets/damage.ogg")) {
+    std::cout << "Could not load audio";
     return 0;
   }
-  sf::Text text;
-  text.setFont(font);
-  text.setCharacterSize(30);
-  text.setFillColor(sf::Color::White);
-  text.setStyle(sf::Text::Bold);
-  text.setPosition(sf::Vector2f(100,100));
-  text.setString("Here is some text");
+  sf::Sound attackSound;
+  attackSound.setBuffer(buffer);
+  attackSound.play();
   
   while (window.isOpen())
   {
@@ -28,7 +25,6 @@ int main()
     }
     
     window.clear();
-    window.draw(text);
     window.display();
     }
   return 0;
