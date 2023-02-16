@@ -6,16 +6,8 @@ int main()
 {
   sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
   
-  sf::Clock clock;
-  clock.restart();
-  sf::Time time;
-  
   while (window.isOpen())
   {
-    time = clock.getElapsedTime();
-    float seconds = time.asSeconds();
-    std::cout << seconds << std::endl;
-    
     sf::Event event;
     while (window.pollEvent(event))
     {
