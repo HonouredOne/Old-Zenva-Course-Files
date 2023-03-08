@@ -1,9 +1,17 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include "gameWorld.cpp"
 #include <iostream>
 
 int main()
 {
+  GameWorld world = GameWorld();
+  while(true) {
+    if (!world.performSetup()) {
+      return 1;
+    }
+    if (!world.runGame()) {
+      return 0;
+    }
+  }
   return 0;
 }
 

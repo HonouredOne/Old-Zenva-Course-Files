@@ -10,7 +10,7 @@ bool GameWorld::loadBackground() {
     return false;
   }
   background.setTexture(backgroundTexture);
-  
+  background.scale(sf::Vector2f(1.6,2.25));
   return true;
 }
 
