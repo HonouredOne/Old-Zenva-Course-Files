@@ -1,6 +1,7 @@
 #include "gameWorld.h"
+#include "enemy.cpp"
 
-GameWorld::GameWorld() {
+GameWorld::GameWorld(): enemy(100) {
   damage = 10;
 }
 
@@ -16,7 +17,7 @@ bool GameWorld::loadBackground() {
 
 bool GameWorld::performSetup() {
   isGameOver = false;
-  return loadBackground();
+  return loadBackground() && enemy.performSetup();
 }
 
 bool GameWorld::runGame() {
@@ -35,6 +36,7 @@ bool GameWorld::runGame() {
     
     window.clear();
     window.draw(background);
+    enemy.draw(&window);
     window.display();
     }
   return false;

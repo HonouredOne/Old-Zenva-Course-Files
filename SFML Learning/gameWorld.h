@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include "enemy.h"
 
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
@@ -13,6 +14,7 @@ private:
   sf::Texture backgroundTexture;
   sf::Sprite background;
   sf::Time time;
+  Enemy enemy;
   bool loadBackground();
 public:
   GameWorld();
