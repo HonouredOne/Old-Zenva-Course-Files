@@ -1,7 +1,8 @@
 #include "gameWorld.h"
 #include "enemy.cpp"
+#include "texts.cpp"
 
-GameWorld::GameWorld(): enemy(100) {
+GameWorld::GameWorld(): enemy(100), texts() {
   damage = 10;
 }
 
@@ -17,14 +18,19 @@ bool GameWorld::loadBackground() {
 
 bool GameWorld::performSetup() {
   isGameOver = false;
-  return loadBackground() && enemy.performSetup();
+  enemy = Enemy(100);
+  texts = Texts();  
+  return loadBackground() && enemy.performSetup() && texts.performSetup();
 }
 
 bool GameWorld::runGame() {
   sf::RenderWindow window(sf::VideoMode(1000, 1000), "Point and Click Game");
+  sf::Clock clock;
   
   while (window.isOpen())
   {
+    time = clock.getElapsedTime();
+    
     sf::Event event;
     while (window.pollEvent(event))
     {
@@ -37,6 +43,8 @@ bool GameWorld::runGame() {
     window.clear();
     window.draw(background);
     enemy.draw(&window);
+    texts.drawInGameText(&window, time, enemy.energy);
+    // texts.drawEndGameText(&window, time);
     window.display();
     }
   return false;

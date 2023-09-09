@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include "enemy.h"
+#include "texts.h"
 
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
@@ -15,6 +16,7 @@ private:
   sf::Sprite background;
   sf::Time time;
   Enemy enemy;
+  Texts texts;
   bool loadBackground();
 public:
   GameWorld();
