@@ -1,13 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include "gameTile.cpp"
+#include "gameWorld.cpp"
 
 int main()
 {
-    float windowHeight = 1600;
-    float windowWidth = 1600;
+    float windowHeight = 400;
+    float windowWidth = 400;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Roguelike");
 
-
+    GameWorld gameWorld = GameWorld();
 
     while (window.isOpen())
     {
@@ -19,8 +21,15 @@ int main()
         }
 
         window.clear();
+
+        for (int i = 0; i < gameWorld.gridLength; i++)
+        {
+            for (int j = 0; j < gameWorld.gridLength; j++)
+            {
+                window.draw(gameWorld.tiles[i][j]->sprite);
+            }
+        }
+
         window.display();
     }
-
-    return 0;
 }
