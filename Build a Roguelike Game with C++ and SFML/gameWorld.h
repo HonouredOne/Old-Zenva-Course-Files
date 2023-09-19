@@ -11,8 +11,13 @@ private:
     void setUpInitialState();
     void setUpEnemyPositions();
     void setUpTiles();
+    void redrawSprites();
 public:
     std::vector<std::vector<GameTile *>> tiles;
     int gridLength;
     GameWorld();
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
 };

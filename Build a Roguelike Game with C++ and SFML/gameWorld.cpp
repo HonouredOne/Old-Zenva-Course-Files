@@ -117,3 +117,44 @@ void GameWorld::setUpTiles()
     eighthRow.push_back(new GameTile("images/player.png",350,350,true,false));
     tiles.push_back(eighthRow);
 }
+
+void GameWorld::moveUp()
+{
+    if (playerPos.y == 0) {return;}
+    if (!tiles[playerPos.y-1][playerPos.x]->isPassable) {return;}
+    tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
+    playerPos.y -= 1;
+    redrawSprites();
+}
+
+void GameWorld::moveDown()
+{
+    if (playerPos.y == gridLength-1) {return;}
+    if (!tiles[playerPos.y+1][playerPos.x]->isPassable) {return;}
+    tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
+    playerPos.y += 1;
+    redrawSprites();
+}
+
+void GameWorld::moveLeft()
+{
+    if (playerPos.x == 0) {return;}
+    if (!tiles[playerPos.y][playerPos.x-1]->isPassable) {return;}
+    tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
+    playerPos.x -= 1;
+    redrawSprites();
+}
+
+void GameWorld::moveRight()
+{
+    if (playerPos.x == gridLength-1) {return;}
+    if (!tiles[playerPos.y][playerPos.x+1]->isPassable) {return;}
+    tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
+    playerPos.x += 1;
+    redrawSprites();
+}
+
+void GameWorld::redrawSprites()
+{
+    tiles[playerPos.y][playerPos.x]->setUpSprite("images/player.png");
+}
