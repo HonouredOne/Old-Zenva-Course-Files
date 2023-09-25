@@ -12,6 +12,8 @@ private:
     void setUpEnemyPositions();
     void setUpTiles();
     void redrawSprites();
+    std::vector<sf::Vector2i> getFreeCoordinates(sf::Vector2i);
+    bool checkIfPositionIsFree(sf::Vector2i);
 public:
     std::vector<std::vector<GameTile *>> tiles;
     int gridLength;

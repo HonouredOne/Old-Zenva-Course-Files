@@ -17,7 +17,32 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+            }
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+                {
+                    gameWorld.moveUp();
+                }
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                {
+                    gameWorld.moveDown();
+                }
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                {
+                    gameWorld.moveLeft();
+                }
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                {
+                    gameWorld.moveRight();
+                }
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                {
+                    window.close();
+                }
+            }
         }
 
         window.clear();

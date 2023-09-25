@@ -158,3 +158,45 @@ void GameWorld::redrawSprites()
 {
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/player.png");
 }
+
+std::vector<sf::Vector2i> GameWorld::getFreeCoordinates(sf::Vector2i currentPos)
+{
+    std::vector<sf::Vector2i> freePositions;
+
+    std::vector<sf::Vector2i> allPositions;
+    allPositions.push_back(sf::Vector2i(currentPos.x-1,currentPos.y));
+    allPositions.push_back(sf::Vector2i(currentPos.x-1,currentPos.y-1));
+    allPositions.push_back(sf::Vector2i(currentPos.x,currentPos.y-1));
+    allPositions.push_back(sf::Vector2i(currentPos.x+1,currentPos.y-1));
+    allPositions.push_back(sf::Vector2i(currentPos.x+1,currentPos.y));
+    allPositions.push_back(sf::Vector2i(currentPos.x+1,currentPos.y+1));
+    allPositions.push_back(sf::Vector2i(currentPos.x,currentPos.y+1));
+    allPositions.push_back(sf::Vector2i(currentPos.x-1,currentPos.y+1));
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (checkIfPositionIsFree(allPositions[i]))
+        {
+            freePositions.push_back(allPositions[i]);
+        }
+    }
+
+    return freePositions;
+}
+
+bool GameWorld::checkIfPositionIsFree(sf::Vector2i pos)
+{
+    if (pos.x < 0 || pos.y < 0 || pos.x > gridLength-1 || pos.y > gridLength-1)
+    {
+        return false;
+    }
+    if (!tiles[pos.y][pos.x]->isPassable)
+    {
+        return false;
+    }
+    if (tiles[pos.y][pos.x]->isExit)
+    {
+        return false;
+    }
+    return true;
+}
