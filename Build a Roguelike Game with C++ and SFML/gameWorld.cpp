@@ -1,4 +1,6 @@
 #include "gameWorld.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 
 GameWorld::GameWorld()
@@ -124,6 +126,8 @@ void GameWorld::moveUp()
     if (!tiles[playerPos.y-1][playerPos.x]->isPassable) {return;}
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.y -= 1;
+
+    moveEnemies();
     redrawSprites();
 }
 
@@ -133,6 +137,8 @@ void GameWorld::moveDown()
     if (!tiles[playerPos.y+1][playerPos.x]->isPassable) {return;}
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.y += 1;
+
+    moveEnemies();
     redrawSprites();
 }
 
@@ -142,6 +148,8 @@ void GameWorld::moveLeft()
     if (!tiles[playerPos.y][playerPos.x-1]->isPassable) {return;}
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.x -= 1;
+
+    moveEnemies();
     redrawSprites();
 }
 
@@ -151,12 +159,32 @@ void GameWorld::moveRight()
     if (!tiles[playerPos.y][playerPos.x+1]->isPassable) {return;}
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.x += 1;
+
+    moveEnemies();
     redrawSprites();
 }
 
 void GameWorld::redrawSprites()
 {
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/player.png");
+    for (int i = 0; i < enemyPositions.size(); i++)
+    {
+        sf::Vector2i currentEnemyPos = enemyPositions[i];
+        tiles[currentEnemyPos.y][currentEnemyPos.x]->setUpSprite("images/enemy.png");
+    }
+}
+
+void GameWorld::moveEnemies()
+{
+    for (int i = 0; i < enemyPositions.size(); i++)
+    {
+        sf::Vector2i currentEnemyPos = enemyPositions[i];
+        std::vector<sf::Vector2i> freePositions = getFreeCoordinates(currentEnemyPos);
+        int randomIndex = rand() % (freePositions.size()-1);
+        sf::Vector2i newPos = freePositions[randomIndex];
+        tiles[currentEnemyPos.y][currentEnemyPos.x]->setUpSprite("images/ground.png");
+        enemyPositions[i] = newPos;
+    }
 }
 
 std::vector<sf::Vector2i> GameWorld::getFreeCoordinates(sf::Vector2i currentPos)
