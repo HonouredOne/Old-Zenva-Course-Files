@@ -18,6 +18,9 @@ private:
     std::vector<sf::Vector2i> getFreeCoordinates(sf::Vector2i);
     bool checkIfPositionIsFree(sf::Vector2i);
     void moveEnemies();
+    bool checkIfReachedExit();
+    bool checkIfTouchedEnemy();
+    void checkCollisionsAndMoveEnemies();
 public:
     std::vector<std::vector<GameTile *>> tiles;
     int gridLength;

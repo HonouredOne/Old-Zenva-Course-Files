@@ -1,6 +1,5 @@
 #include "gameWorld.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
 
 GameWorld::GameWorld()
@@ -122,46 +121,66 @@ void GameWorld::setUpTiles()
 
 void GameWorld::moveUp()
 {
-    if (playerPos.y == 0) {return;}
-    if (!tiles[playerPos.y-1][playerPos.x]->isPassable) {return;}
+    if (playerPos.y == 0)
+    {
+        return;
+    }
+    if (!tiles[playerPos.y-1][playerPos.x]->isPassable)
+    {
+        return;
+    }
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.y -= 1;
 
-    moveEnemies();
-    redrawSprites();
+    checkCollisionsAndMoveEnemies();
 }
 
 void GameWorld::moveDown()
 {
-    if (playerPos.y == gridLength-1) {return;}
-    if (!tiles[playerPos.y+1][playerPos.x]->isPassable) {return;}
+    if (playerPos.y == gridLength-1)
+    {
+        return;
+    }
+    if (!tiles[playerPos.y+1][playerPos.x]->isPassable)
+    {
+        return;
+    }
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.y += 1;
 
-    moveEnemies();
-    redrawSprites();
+    checkCollisionsAndMoveEnemies();
 }
 
 void GameWorld::moveLeft()
 {
-    if (playerPos.x == 0) {return;}
-    if (!tiles[playerPos.y][playerPos.x-1]->isPassable) {return;}
+    if (playerPos.x == 0)
+    {
+        return;
+    }
+    if (!tiles[playerPos.y][playerPos.x-1]->isPassable)
+    {
+        return;
+    }
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.x -= 1;
 
-    moveEnemies();
-    redrawSprites();
+    checkCollisionsAndMoveEnemies();
 }
 
 void GameWorld::moveRight()
 {
-    if (playerPos.x == gridLength-1) {return;}
-    if (!tiles[playerPos.y][playerPos.x+1]->isPassable) {return;}
+    if (playerPos.x == gridLength-1)
+    {
+        return;
+    }
+    if (!tiles[playerPos.y][playerPos.x+1]->isPassable)
+    {
+        return;
+    }
     tiles[playerPos.y][playerPos.x]->setUpSprite("images/ground.png");
     playerPos.x += 1;
 
-    moveEnemies();
-    redrawSprites();
+    checkCollisionsAndMoveEnemies();
 }
 
 void GameWorld::redrawSprites()
@@ -227,4 +246,40 @@ bool GameWorld::checkIfPositionIsFree(sf::Vector2i pos)
         return false;
     }
     return true;
+}
+
+void GameWorld::checkCollisionsAndMoveEnemies()
+{
+    if (checkIfReachedExit())
+    {
+        setUpInitialState();
+        std::cout << "You won!" << std::endl;
+        return;
+    }
+    moveEnemies();
+    if (checkIfTouchedEnemy())
+    {
+        setUpInitialState();
+        std::cout << "You died." << std::endl;
+        return;
+    }
+    redrawSprites();
+}
+
+bool GameWorld::checkIfReachedExit()
+{
+    return playerPos.x == exitPos.x && playerPos.y == exitPos.y;
+}
+
+bool GameWorld::checkIfTouchedEnemy()
+{
+    for (int i = 0; i < enemyPositions.size(); i++)
+    {
+        sf::Vector2i currentEnemyPos = enemyPositions[i];
+        if (playerPos.x == currentEnemyPos.x && playerPos.y == currentEnemyPos.y)
+        {
+            return true;
+        }
+    }
+    return false;
 }

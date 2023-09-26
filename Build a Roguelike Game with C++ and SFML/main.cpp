@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include "gameTile.cpp"
-#include "gameWorld.cpp"
+#include "gameTile.h"
+#include "gameWorld.h"
 
 int main()
 {
-    float windowHeight = 400;
-    float windowWidth = 400;
+    float windowHeight = 1600;
+    float windowWidth = 1600;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Roguelike");
 
