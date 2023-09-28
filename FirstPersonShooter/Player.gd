@@ -101,3 +101,14 @@ func shoot():
 	bullet.global_transform = muzzle.global_transform
 	
 	ammo -= 1
+
+func take_damage(damage):
+	
+	curHp -= damage
+	
+	if curHp <= 0:
+		die()
+
+func die():
+	
+	get_tree().reload_current_scene()

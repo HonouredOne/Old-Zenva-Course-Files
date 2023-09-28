@@ -504,4 +504,4 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61586, -4.76837e-07, -1.48679 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1252, -4.76837e-07, -1.48679 )
