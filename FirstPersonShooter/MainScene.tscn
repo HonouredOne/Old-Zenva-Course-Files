@@ -512,17 +512,54 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
-[node name="Enemy" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1252, -4.76837e-07, -1.48679 )
+[node name="Enemies" type="Node" parent="."]
 
-[node name="Pickup_Ammo" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0841, 1, -13.3029 )
+[node name="Enemy" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, 0 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_x = true
+move_lock_y = true
+move_lock_z = true
 
-[node name="Pickup_Ammo2" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6371, 1, 12.3053 )
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, 0 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_x = true
+move_lock_y = true
+move_lock_z = true
 
-[node name="Pickup_Health" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8014, 1, -12.8636 )
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_x = true
+move_lock_y = true
+move_lock_z = true
 
-[node name="Pickup_Health2" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4914, 1, 13.6192 )
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_x = true
+move_lock_y = true
+move_lock_z = true
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="Pickup_Ammo" parent="Pickups" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 1, 13.5 )
+
+[node name="Pickup_Ammo2" parent="Pickups" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 1, -13.5 )
+
+[node name="Pickup_Health" parent="Pickups" instance=ExtResource( 10 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -13.5, 1, 13.5 )
+
+[node name="Pickup_Health2" parent="Pickups" instance=ExtResource( 10 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 13.5, 1, -13.5 )

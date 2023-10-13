@@ -1,15 +1,15 @@
 extends KinematicBody
 
 # stats
-var health : int = 5
-var moveSpeed : float = 2
+var health : int = rand_range(1.0, 5.0)
+onready var moveSpeed : float = rand_range(1.0, 2.0)
 
 # attacking
-var damage  : int = 1
-var attackRate : float = 1.0
+onready var damage  : float = rand_range(0.25, 1.0)
+onready var attackRate : float = rand_range(0.25, 1.5)
 var attackDist : float = 2.0
 
-var scoreToGive : int = 10
+onready var scoreToGive : int = rand_range(1.0, 10.0)
 
 # components
 onready var player : Node = get_node("/root/MainScene/Player")
@@ -21,7 +21,7 @@ func _ready():
 	timer.set_wait_time(attackRate)
 	timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	# calculate the direction to the player
 	var dir = (player.translation - translation).normalized()
