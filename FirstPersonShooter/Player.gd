@@ -3,8 +3,6 @@ extends KinematicBody
 # stats
 var curHp : int = 10
 var maxHp : int = 10
-var curStamina : float = 25.0
-var maxStamina : float = 25.0
 var ammo : int = 15
 var score : int = 0
 
@@ -37,7 +35,6 @@ func _ready():
 	ui.update_health_bar(curHp, maxHp)
 	ui.update_ammo_text(ammo)
 	ui.update_score_text(score)
-	ui.update_stamina_bar(curStamina, maxStamina)
 
 func _physics_process(delta):
 	
@@ -78,21 +75,6 @@ func _physics_process(delta):
 	# jumping
 	if Input.is_action_pressed("jump") and is_on_floor():
 		vel.y = jumpForce
-	
-	# sprinting
-	while Input.is_action_pressed("sprint") and curStamina > 1.0:
-		sprint(5.0, delta)
-	while !Input.is_action_pressed("sprint") and curStamina < maxStamina:
-		curStamina += 1.0 * delta
-		ui.update_stamina_bar(curStamina, maxStamina)
-		if curStamina > maxStamina:
-			curStamina = maxStamina
-		if curStamina < 0:
-			curStamina = 0
-		if curStamina <= 0:
-			curStamina = 0
-	if Input.is_action_just_released("sprint"):
-		moveSpeed = 5.0
 
 func _process(delta):
 	
@@ -136,15 +118,6 @@ func take_damage(damage):
 	
 	if curHp <= 0:
 		die()
-
-func sprint(staminaLossPerSecond, delta):
-	
-	curStamina -= staminaLossPerSecond * delta
-	moveSpeed = 10.0
-	
-	if curStamina < maxStamina:
-		ui.update_stamina_bar(curStamina, maxStamina)
-	
 
 func die():
 	
