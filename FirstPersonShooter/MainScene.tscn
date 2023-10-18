@@ -516,39 +516,15 @@ shadow_enabled = true
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, 0 )
-axis_lock_motion_x = true
-axis_lock_motion_y = true
-axis_lock_motion_z = true
-move_lock_x = true
-move_lock_y = true
-move_lock_z = true
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, 0 )
-axis_lock_motion_x = true
-axis_lock_motion_y = true
-axis_lock_motion_z = true
-move_lock_x = true
-move_lock_y = true
-move_lock_z = true
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5 )
-axis_lock_motion_x = true
-axis_lock_motion_y = true
-axis_lock_motion_z = true
-move_lock_x = true
-move_lock_y = true
-move_lock_z = true
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5 )
-axis_lock_motion_x = true
-axis_lock_motion_y = true
-axis_lock_motion_z = true
-move_lock_x = true
-move_lock_y = true
-move_lock_z = true
 
 [node name="Pickups" type="Node" parent="."]
 

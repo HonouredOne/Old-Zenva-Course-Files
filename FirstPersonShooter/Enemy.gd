@@ -1,7 +1,7 @@
 extends KinematicBody
 
 # stats
-var health : int = rand_range(1.0, 5.0)
+var health : int = rand_range(3.0, 7.0)
 onready var moveSpeed : float = rand_range(1.0, 2.0)
 
 # attacking
