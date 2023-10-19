@@ -23,7 +23,7 @@ func _process(delta):
 	# if at the top, start moving down
 	if bobbingUp and translation.y > startYPos + bobHeight:
 		bobbingUp = false
-	elif !bobbingUp and translation.y < startYPos:
+	elif !bobbingUp and translation.y < startYPos - (bobHeight / 2):
 		bobbingUp = true
 
 func _on_Pickup_body_entered(body):
