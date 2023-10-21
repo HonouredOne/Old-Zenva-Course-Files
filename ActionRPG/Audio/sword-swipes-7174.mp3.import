@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sword-swipes-7174.mp3-4f531621a6a4458d3bd7cb7bc47b11d5.mp3str"
+
+[deps]
+
+source_file="res://Audio/sword-swipes-7174.mp3"
+dest_files=[ "res://.import/sword-swipes-7174.mp3-4f531621a6a4458d3bd7cb7bc47b11d5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

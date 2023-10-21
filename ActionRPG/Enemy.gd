@@ -6,6 +6,7 @@ var maxHp : int = 3
 var damage : int = 1
 var attackDist : float = 1.5
 var attackRate : float = 1.0
+var gravity : float = 15.0
 
 var moveSpeed : float = 2.5
 
@@ -32,7 +33,7 @@ func _physics_process(delta):
 		var dir = (player.translation - translation).normalized()
 		
 		vel.x = dir.x * moveSpeed
-		vel.y = 0
+		vel.y -= gravity * delta
 		vel.z = dir.z * moveSpeed
 		
 		vel = move_and_slide(vel, Vector3.UP)

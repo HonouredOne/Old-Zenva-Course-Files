@@ -18,6 +18,13 @@ config/icon="res://icon.png"
 
 common/drop_mouse_on_gui_input_disabled=true
 
+[importer_defaults]
+
+mp3={
+"loop": false,
+"loop_offset": 0
+}
+
 [input]
 
 move_forward={

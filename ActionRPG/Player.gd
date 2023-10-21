@@ -18,6 +18,12 @@ var vel = Vector3()
 onready var camera = get_node("CameraOrbit")
 onready var attackRayCast = get_node("AttackRayCast")
 onready var swordAnim = get_node("WeaponHolder/SwordAnimator")
+onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
+
+func _ready():
+	
+	ui.update_health_bar(curHp, maxHp)
+	ui.update_gold_text(gold)
 
 func _process(delta):
 	
@@ -51,6 +57,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		vel.y = jumpForce
+		$Jump.play()
 	
 	vel = move_and_slide(vel, Vector3.UP)
 
@@ -67,14 +74,18 @@ func try_attack():
 	if attackRayCast.is_colliding():
 		if attackRayCast.get_collider().has_method("take_damage"):
 			attackRayCast.get_collider().take_damage(damage)
+			$HitEnemy.play(0.3)
 
 func give_gold(amount):
 	
 	gold += amount
+	ui.update_gold_text(gold)
 
 func take_damage(damageToTake):
 	
 	curHp -= damageToTake
+	ui.update_health_bar(curHp, maxHp)
+	$Oof.play()
 	
 	if curHp <= 0:
 		die()

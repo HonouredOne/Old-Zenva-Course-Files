@@ -5,6 +5,7 @@
 [sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
 resource_name = "Other"
+flags_do_not_receive_shadows = true
 params_cull_mode = 2
 albedo_color = Color( 0.866667, 0.105882, 0.619608, 1 )
 roughness = 0.08

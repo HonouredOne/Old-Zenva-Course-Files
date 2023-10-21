@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ouch-sound-effect-30-11844.mp3-ed0807181a5cef4e4bccaabcffb4d823.mp3str"
+
+[deps]
+
+source_file="res://Audio/ouch-sound-effect-30-11844.mp3"
+dest_files=[ "res://.import/ouch-sound-effect-30-11844.mp3-ed0807181a5cef4e4bccaabcffb4d823.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -23,4 +23,10 @@ func _on_GoldCoin_body_entered(body):
 	
 	if body.name == "Player":
 		body.give_gold(goldToGive)
-		queue_free()
+		$CoinGet.play()
+		$CollisionShape.queue_free()
+		$Model.queue_free()
+
+
+func _on_CoinGet_finished():
+	queue_free()
