@@ -1,0 +1,156 @@
+[gd_scene load_steps=20 format=3 uid="uid://bqpxbo7crn3y"]
+
+[ext_resource type="Script" path="res://Collision/PlayerMovement.gd" id="1_bl2pl"]
+[ext_resource type="PackedScene" uid="uid://vomtkk0f274i" path="res://Collision/Pole.tscn" id="2_s7ao8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7e6aj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1nwp6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6j7s5"]
+friction = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xyxgl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwx3m"]
+albedo_color = Color(0.396078, 0.517647, 1, 1)
+metallic = 0.4
+roughness = 0.17
+
+[sub_resource type="BoxMesh" id="BoxMesh_toa7f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wfn0"]
+albedo_color = Color(0.784314, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv16x"]
+albedo_color = Color(0.784314, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_m5fbf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32jy7"]
+albedo_color = Color(0.803922, 0.631373, 0.556863, 1)
+roughness = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_nbku2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1604"]
+albedo_color = Color(1, 0.588235, 1, 1)
+metallic = 0.25
+roughness = 0.15
+
+[sub_resource type="BoxMesh" id="BoxMesh_hjqbf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh0w0"]
+albedo_color = Color(0.247059, 0.188235, 0.054902, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t730j"]
+margin = 1.0
+size = Vector3(1.5, 2.75, 2)
+
+[sub_resource type="Sky" id="Sky_730sj"]
+
+[sub_resource type="Environment" id="Environment_8type"]
+background_color = Color(0, 0.733333, 0.992157, 1)
+sky = SubResource("Sky_730sj")
+
+[node name="Main" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(12, 0, 0, 0, 0.281908, 10.2606, 0, -0.102606, 28.1908, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_7e6aj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_1nwp6")
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.00805, 12.5992)
+physics_material_override = SubResource("PhysicsMaterial_6j7s5")
+max_contacts_reported = 3
+contact_monitor = true
+script = ExtResource("1_bl2pl")
+
+[node name="Body" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.752, 0, 0, 0, 0.773074, 0.127631, 0, -0.136314, 0.723834, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xyxgl")
+surface_material_override/0 = SubResource("StandardMaterial3D_cwx3m")
+
+[node name="RightSki" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.222, 0, 0, 0, 0.181889, 0.0697641, 0, -0.00635171, 1.99778, 0.3, -0.8, -0.15)
+mesh = SubResource("BoxMesh_toa7f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2wfn0")
+
+[node name="LeftSki" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.222, 0, 0, 0, 0.181889, 0.0697641, 0, -0.00635171, 1.99778, -0.3, -0.8, -0.15)
+mesh = SubResource("BoxMesh_toa7f")
+surface_material_override/0 = SubResource("StandardMaterial3D_hv16x")
+
+[node name="Head" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 1.07128, -0.276814)
+mesh = SubResource("SphereMesh_m5fbf")
+surface_material_override/0 = SubResource("StandardMaterial3D_32jy7")
+
+[node name="Floaty?" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.75, 0, 0, 0, 0.738606, 0.130236, 0, -0.130236, 0.738606, 0, 0, 0)
+mesh = SubResource("TorusMesh_nbku2")
+surface_material_override/0 = SubResource("StandardMaterial3D_y1604")
+
+[node name="Hat?" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.774, 0, 0, 0, 0.163115, -0.193181, 0, 0.0402161, 0.783537, 0, 1.40427, -0.196795)
+mesh = SubResource("BoxMesh_hjqbf")
+surface_material_override/0 = SubResource("StandardMaterial3D_fh0w0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348994, 0, -0.0348994, 0.999391, 0, 0.449413, -0.268381)
+shape = SubResource("BoxShape3D_t730j")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -4.76837e-07, 4.5021, 3.65785)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7523, -0.537695, 0.380695, -8.59587e-09, 0.577843, 0.816148, -0.658821, -0.613988, 0.434712, 0, 6.70865, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8type")
+
+[node name="Poles" type="Node" parent="."]
+
+[node name="Pole" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -4.61068, 3.45478, 9.05336)
+
+[node name="Pole2" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -3.40143, 2.11836, 5.38159)
+
+[node name="Pole3" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 5.39312, 2.8786, 7.47032)
+
+[node name="Pole4" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 2.63895, 3.29473, 9.2717)
+
+[node name="Pole6" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 4.51366, 1.19812, 2.85323)
+
+[node name="Pole7" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -5.55609, -0.0182524, -0.488719)
+
+[node name="Pole10" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 0.182346, -0.14644, -0.840484)
+
+[node name="Pole12" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 4.65584, -1.45868, -5.19408)
+
+[node name="Pole14" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 2.31502, -2.81909, -9.47019)
+
+[node name="Pole15" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -5.05041, -2.20305, -6.49098)
+
+[node name="Pole19" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -0.609163, -4.57962, -13.021)
+
+[node name="Pole20" parent="Poles" instance=ExtResource("2_s7ao8")]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, -5.60007, -4.68379, -13.3068)
+
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
